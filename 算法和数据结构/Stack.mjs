@@ -15,7 +15,7 @@
  * size
  */
 const items = new WeakMap();
-class Stack {
+export default class Stack {
   constructor (){
     items.set(this, []);
   }
