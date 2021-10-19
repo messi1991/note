@@ -44,6 +44,10 @@ export default class Stack {
   size () {
     return items.get(this).length;
   }
+  toString () {
+    let _arr = items.get(this);
+    return this.isEmpty() ? '' : _arr.join()
+  }
 }
 
 
@@ -53,6 +57,7 @@ export default class Stack {
 /**
  * test
  */
+console.group("StackTest");
 const stack = new Stack();
 console.log('stack.isEmpty() => ', stack.isEmpty()); // outputs true
 
@@ -69,7 +74,10 @@ console.log('stack.isEmpty() => ', stack.isEmpty()); // outputs false
 
 stack.push(15);
 
+console.log('stack.toString => ', stack.toString()); // outputs false
+
 stack.pop();
 stack.pop();
 
 console.log('stack.size() after push 15 and pop twice => ', stack.size()); // outputs 2
+console.groupEnd("StackTest")
