@@ -20,13 +20,17 @@ const testData = [
   }
 
 ]
+
+console.time("one");
 const handleMenuData = (menuData) => {
   let source = [];
   const menuIdMap = {};
   const relativeMap = {};
   for (let i = 0; i < menuData.length; i += 1) {
     const item = menuData[i];
-    menuIdMap[item.id] = item;
+    menuIdMap[item.id] = {
+      ...item
+    };
     if (relativeMap[item.parentId] === undefined) {
       relativeMap[item.parentId] = [item.id];
     } else {
@@ -56,5 +60,28 @@ const handleMenuData = (menuData) => {
 
   return source;
 }
+console.log("sss", handleMenuData(testData.slice()))
+console.timeEnd("one");
 
-console.log("sss", handleMenuData(testData))
+console.time("two");
+const list_to_tree = (list) => {
+  var map = {}, node, roots = [], i;
+  
+  for (i = 0; i < list.length; i += 1) {
+    map[list[i].id] = i; // initialize the map
+    list[i].children = []; // initialize the children
+  }
+  
+  for (i = 0; i < list.length; i += 1) {
+    node = list[i];
+    if (node.parentId !== "0") {
+      // if you have dangling branches check that map[node.parentId] exists
+      list[map[node.parentId]].children.push(node);
+    } else {
+      roots.push(node);
+    }
+  }
+  return roots;
+}
+console.log("sss1", list_to_tree(testData))
+console.timeEnd("two");
