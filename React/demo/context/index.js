@@ -1,78 +1,45 @@
 import React from "react";
-import ReactDOM from 'react-dom'
+import ReactDOM from 'react-dom';
+import { ThemeContext, themes } from "./theme-context";
+import ThemedButton from "./themed-button.js";
 
+function Toolbar(props) {
+    return (
+        <ThemedButton onClick={ props.changeTheme }>
+            Change Theme
+        </ThemedButton>
+    )
+}
 
-class ClassComponent extends React.Component {
-
-  // 箭头函数
-  arrowFunction = () => {
-      console.log('使用箭头函数，this 指向：', this);
-  }
-
-  // bind 绑定 this
-  bindFunction() {
-      console.log('使用 bind 改变 this 指向：', this);
-  }
-
-
-  // 普通函数
-  normalFunction = function() {
-    console.log('调用普通函数', this);
-  }
-  render() {
+class App extends React.Component {
+    constructor(props) {
+      super(props);
+      this.state = {
+        theme: themes.light,
+      };
+  
+      this.toggleTheme = () => {
+        this.setState(state => ({
+          theme:
+            state.theme === themes.dark
+              ? themes.light
+              : themes.dark,
+        }));
+      };
+    }
+  
+    render() {
       return (
-          <React.Fragment>
-              <h3>类组件</h3>
-              <div>
-                  <button onClick={ this.normalFunction }>普通函数 this</button>
-                  <button onClick={ this.arrowFunction }>箭头函数打印 this</button>
-                  <br /><br />
-                  <button onClick={ this.bindFunction.bind(this) }>bind 函数打印 this</button>
-                  <br /><br />
-                  <button onClick={() => console.log('匿名函数调用，this 指向：', this)}>匿名函数打印 this</button>
-              </div>
-          </React.Fragment>
-      );
-  }
-}
-
-const FunctionComponent = () => {
-  // 箭头函数
-  const arrowFunction = () => {
-      console.log('使用箭头函数', this);
-  }
-
-  // bind 绑定函数
-  const bindFunction = function() {
-      console.log('使用 bind 调用函数', this);
-  }
-
-  // 普通函数
-  const normalFunction = function() {
-      console.log('调用普通函数', this);
-  }
-  return (
-      <React.Fragment>
-          <h3>函数组件</h3>
+        <div>
+          <ThemeContext.Provider value={this.state.theme}>
+            <Toolbar changeTheme={this.toggleTheme} />
+          </ThemeContext.Provider>
           <div>
-              <button onClick={ normalFunction }>普通函数</button>
-              <br /><br />
-              <button onClick={ arrowFunction }>箭头函数</button>
-              <br /><br />
-              <button onClick={ bindFunction.bind(this) }>bind 函数</button>
-              <br /><br />
-              <button onClick={() => console.log('匿名函数调用', this)}>匿名函数</button>
+            <ThemedButton>no change</ThemedButton>
           </div>
-      </React.Fragment>
-  );
-}
+        </div>
+      );
+    }
+  }
 
-const App = () => (
-  <div>
-      <ClassComponent />
-
-      <FunctionComponent />
-  </div>
-)
-
-ReactDOM.render(<App />, app);
+ReactDOM.render(<App />, document.getElementById("app"));

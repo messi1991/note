@@ -2,6 +2,104 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./theme-context.js":
+/*!**************************!*\
+  !*** ./theme-context.js ***!
+  \**************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "themes": () => (/* binding */ themes),
+/* harmony export */   "ThemeContext": () => (/* binding */ ThemeContext)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "../../../node_modules/react/index.js");
+
+var themes = {
+  light: {
+    foreground: '#000000',
+    background: '#eeeeee'
+  },
+  dark: {
+    foreground: '#ffffff',
+    background: '#222222'
+  }
+};
+var ThemeContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createContext(themes.light);
+
+/***/ }),
+
+/***/ "./themed-button.js":
+/*!**************************!*\
+  !*** ./themed-button.js ***!
+  \**************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _theme_context__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./theme-context */ "./theme-context.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "../../../node_modules/react/index.js");
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } Object.defineProperty(subClass, "prototype", { value: Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }), writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+var ThemeButton = /*#__PURE__*/function (_React$Component) {
+  _inherits(ThemeButton, _React$Component);
+
+  var _super = _createSuper(ThemeButton);
+
+  function ThemeButton() {
+    _classCallCheck(this, ThemeButton);
+
+    return _super.apply(this, arguments);
+  }
+
+  _createClass(ThemeButton, [{
+    key: "render",
+    value: function render() {
+      var props = this.props;
+      var theme = this.context;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("button", _extends({}, props, {
+        style: {
+          backgroundColor: theme.background
+        }
+      }));
+    }
+  }]);
+
+  return ThemeButton;
+}(react__WEBPACK_IMPORTED_MODULE_1__.Component);
+
+ThemeButton.contextType = _theme_context__WEBPACK_IMPORTED_MODULE_0__.ThemeContext;
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ThemeButton);
+
+/***/ }),
+
 /***/ "../../../node_modules/object-assign/index.js":
 /*!****************************************************!*\
   !*** ../../../node_modules/object-assign/index.js ***!
@@ -29840,6 +29938,23 @@ if (false) {} else {
 /******/ 	}
 /******/ 	
 /************************************************************************/
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
 /******/ 		// define __esModule on exports
@@ -29861,9 +29976,9 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "../../../node_modules/react/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "../../../node_modules/react-dom/index.js");
+/* harmony import */ var _theme_context__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./theme-context */ "./theme-context.js");
+/* harmony import */ var _themed_button_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./themed-button.js */ "./themed-button.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
-
-var _this3 = undefined;
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -29885,101 +30000,58 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
 
 
-var ClassComponent = /*#__PURE__*/function (_React$Component) {
-  _inherits(ClassComponent, _React$Component);
 
-  var _super = _createSuper(ClassComponent);
+function Toolbar(props) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themed_button_js__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    onClick: props.changeTheme
+  }, "Change Theme");
+}
 
-  function ClassComponent() {
+var App = /*#__PURE__*/function (_React$Component) {
+  _inherits(App, _React$Component);
+
+  var _super = _createSuper(App);
+
+  function App(props) {
     var _this;
 
-    _classCallCheck(this, ClassComponent);
+    _classCallCheck(this, App);
 
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
+    _this = _super.call(this, props);
+    _this.state = {
+      theme: _theme_context__WEBPACK_IMPORTED_MODULE_2__.themes.light
+    };
 
-    _this = _super.call.apply(_super, [this].concat(args));
-
-    _defineProperty(_assertThisInitialized(_this), "arrowFunction", function () {
-      console.log('使用箭头函数，this 指向：', _assertThisInitialized(_this));
-    });
-
-    _defineProperty(_assertThisInitialized(_this), "normalFunction", function () {
-      console.log('调用普通函数', this);
-    });
+    _this.toggleTheme = function () {
+      _this.setState(function (state) {
+        return {
+          theme: state.theme === _theme_context__WEBPACK_IMPORTED_MODULE_2__.themes.dark ? _theme_context__WEBPACK_IMPORTED_MODULE_2__.themes.light : _theme_context__WEBPACK_IMPORTED_MODULE_2__.themes.dark
+        };
+      });
+    };
 
     return _this;
   }
 
-  _createClass(ClassComponent, [{
-    key: "bindFunction",
-    value: // bind 绑定 this
-    function bindFunction() {
-      console.log('使用 bind 改变 this 指向：', this);
-    } // 普通函数
-
-  }, {
+  _createClass(App, [{
     key: "render",
     value: function render() {
-      var _this2 = this;
-
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", null, "\u7C7B\u7EC4\u4EF6"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-        onClick: this.normalFunction
-      }, "\u666E\u901A\u51FD\u6570 this"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-        onClick: this.arrowFunction
-      }, "\u7BAD\u5934\u51FD\u6570\u6253\u5370 this"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-        onClick: this.bindFunction.bind(this)
-      }, "bind \u51FD\u6570\u6253\u5370 this"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-        onClick: function onClick() {
-          return console.log('匿名函数调用，this 指向：', _this2);
-        }
-      }, "\u533F\u540D\u51FD\u6570\u6253\u5370 this")));
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_theme_context__WEBPACK_IMPORTED_MODULE_2__.ThemeContext.Provider, {
+        value: this.state.theme
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(Toolbar, {
+        changeTheme: this.toggleTheme
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themed_button_js__WEBPACK_IMPORTED_MODULE_3__["default"], null, "no change")));
     }
   }]);
 
-  return ClassComponent;
+  return App;
 }(react__WEBPACK_IMPORTED_MODULE_0__.Component);
 
-var FunctionComponent = function FunctionComponent() {
-  // 箭头函数
-  var arrowFunction = function arrowFunction() {
-    console.log('使用箭头函数', _this3);
-  }; // bind 绑定函数
-
-
-  var bindFunction = function bindFunction() {
-    console.log('使用 bind 调用函数', this);
-  }; // 普通函数
-
-
-  var normalFunction = function normalFunction() {
-    console.log('调用普通函数', this);
-  };
-
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", null, "\u51FD\u6570\u7EC4\u4EF6"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-    onClick: normalFunction
-  }, "\u666E\u901A\u51FD\u6570"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-    onClick: arrowFunction
-  }, "\u7BAD\u5934\u51FD\u6570"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-    onClick: bindFunction.bind(_this3)
-  }, "bind \u51FD\u6570"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-    onClick: function onClick() {
-      return console.log('匿名函数调用', _this3);
-    }
-  }, "\u533F\u540D\u51FD\u6570")));
-};
-
-var App = function App() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(ClassComponent, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(FunctionComponent, null));
-};
-
-react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(App, null), app);
+react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(App, null), document.getElementById("app"));
 })();
 
 /******/ })()
