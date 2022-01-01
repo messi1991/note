@@ -10,4 +10,10 @@ export const themes = {
   },
 }
 
-export const ThemeContext = React.createContext(themes.light)
+export const user = {
+  name: 'Guest'
+}
+
+export const ThemeContext = React.createContext(themes.light);
+
+export const UserContext = React.createContext(user)

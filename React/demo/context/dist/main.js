@@ -11,7 +11,9 @@
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "themes": () => (/* binding */ themes),
-/* harmony export */   "ThemeContext": () => (/* binding */ ThemeContext)
+/* harmony export */   "user": () => (/* binding */ user),
+/* harmony export */   "ThemeContext": () => (/* binding */ ThemeContext),
+/* harmony export */   "UserContext": () => (/* binding */ UserContext)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "../../../node_modules/react/index.js");
 
@@ -25,7 +27,11 @@ var themes = {
     background: '#222222'
   }
 };
+var user = {
+  name: 'Guest'
+};
 var ThemeContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createContext(themes.light);
+var UserContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createContext(user);
 
 /***/ }),
 
@@ -73,10 +79,14 @@ var ThemeButton = /*#__PURE__*/function (_React$Component) {
 
   var _super = _createSuper(ThemeButton);
 
-  function ThemeButton() {
+  function ThemeButton(props) {
+    var _this;
+
     _classCallCheck(this, ThemeButton);
 
-    return _super.apply(this, arguments);
+    _this = _super.call(this, props);
+    console.log("ThemeButton props", props);
+    return _this;
   }
 
   _createClass(ThemeButton, [{
@@ -84,6 +94,7 @@ var ThemeButton = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var props = this.props;
       var theme = this.context;
+      console.log("ThemeButton render", props, theme);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("button", _extends({}, props, {
         style: {
           backgroundColor: theme.background
@@ -30005,23 +30016,25 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
-function Toolbar(props) {
+function Toolbar(props, a, b, c) {
+  console.log("Toolbar props", props, a, b, c);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themed_button_js__WEBPACK_IMPORTED_MODULE_3__["default"], {
     onClick: props.changeTheme
   }, "Change Theme");
 }
 
-var App = /*#__PURE__*/function (_React$Component) {
-  _inherits(App, _React$Component);
+var Parent = /*#__PURE__*/function (_React$Component) {
+  _inherits(Parent, _React$Component);
 
-  var _super = _createSuper(App);
+  var _super = _createSuper(Parent);
 
-  function App(props) {
+  function Parent(props) {
     var _this;
 
-    _classCallCheck(this, App);
+    _classCallCheck(this, Parent);
 
     _this = _super.call(this, props);
+    console.log("Parent props", props);
     _this.state = {
       theme: _theme_context__WEBPACK_IMPORTED_MODULE_2__.themes.light
     };
@@ -30037,14 +30050,41 @@ var App = /*#__PURE__*/function (_React$Component) {
     return _this;
   }
 
-  _createClass(App, [{
+  _createClass(Parent, [{
     key: "render",
     value: function render() {
+      console.log("Parent render", this.state);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_theme_context__WEBPACK_IMPORTED_MODULE_2__.ThemeContext.Provider, {
         value: this.state.theme
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(Toolbar, {
         changeTheme: this.toggleTheme
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themed_button_js__WEBPACK_IMPORTED_MODULE_3__["default"], null, "no change")));
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, this.props.children));
+    }
+  }]);
+
+  return Parent;
+}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
+
+var App = /*#__PURE__*/function (_React$Component2) {
+  _inherits(App, _React$Component2);
+
+  var _super2 = _createSuper(App);
+
+  function App(props) {
+    var _this2;
+
+    _classCallCheck(this, App);
+
+    _this2 = _super2.call(this, props);
+    console.log('App props', props);
+    return _this2;
+  }
+
+  _createClass(App, [{
+    key: "render",
+    value: function render() {
+      console.log("App render", this.state);
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(Parent, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themed_button_js__WEBPACK_IMPORTED_MODULE_3__["default"], null, "no change"));
     }
   }]);
 
