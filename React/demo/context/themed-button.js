@@ -1,4 +1,4 @@
-import { ThemeContext } from "./theme-context";
+import { ThemeContext, UserContext } from "./theme-context";
 import React from "react";
 
 class ThemeButton extends React.Component {
@@ -8,7 +8,7 @@ class ThemeButton extends React.Component {
   }
   render() {
     let  props =  this.props;
-    let  theme =  this.context;
+    let  { theme } =  this.context;
     console.log("ThemeButton render", props, theme);
     return (
       <button 
@@ -16,7 +16,14 @@ class ThemeButton extends React.Component {
       style={{
         backgroundColor: theme.background
       }}
-      />
+      >
+        { this.props.children }
+        <UserContext.Consumer>
+          {
+            (value) => (<span>--- { JSON.stringify(value)  }</span>)
+          }
+        </UserContext.Consumer>
+      </button>
     )
   }
 }

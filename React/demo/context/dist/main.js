@@ -30,7 +30,10 @@ var themes = {
 var user = {
   name: 'Guest'
 };
-var ThemeContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createContext(themes.light);
+var ThemeContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createContext({
+  theme: themes.light,
+  toggleTheme: function toggleTheme() {}
+});
 var UserContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createContext(user);
 
 /***/ }),
@@ -93,12 +96,14 @@ var ThemeButton = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       var props = this.props;
-      var theme = this.context;
+      var theme = this.context.theme;
       console.log("ThemeButton render", props, theme);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("button", _extends({}, props, {
         style: {
           backgroundColor: theme.background
         }
+      }), this.props.children, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(_theme_context__WEBPACK_IMPORTED_MODULE_0__.UserContext.Consumer, null, function (value) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("span", null, "--- ", JSON.stringify(value));
       }));
     }
   }]);
@@ -29991,6 +29996,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _themed_button_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./themed-button.js */ "./themed-button.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -30011,6 +30020,8 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -30018,10 +30029,18 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 function Toolbar(props, a, b, c) {
   console.log("Toolbar props", props, a, b, c);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themed_button_js__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    onClick: props.changeTheme
-  }, "Change Theme");
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_theme_context__WEBPACK_IMPORTED_MODULE_2__.ThemeContext.Consumer, null, function (_ref) {
+    var val = _ref.val,
+        toggleTheme = _ref.toggleTheme;
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_theme_context__WEBPACK_IMPORTED_MODULE_2__.UserContext.Consumer, null, function (value) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themed_button_js__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        onClick: toggleTheme
+      }, "Change Theme -- ", JSON.stringify(val));
+    });
+  });
 }
+
+var ToolbarWarp = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.memo(Toolbar);
 
 var Parent = /*#__PURE__*/function (_React$Component) {
   _inherits(Parent, _React$Component);
@@ -30034,19 +30053,33 @@ var Parent = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, Parent);
 
     _this = _super.call(this, props);
-    console.log("Parent props", props);
-    _this.state = {
-      theme: _theme_context__WEBPACK_IMPORTED_MODULE_2__.themes.light
-    };
 
-    _this.toggleTheme = function () {
+    _defineProperty(_assertThisInitialized(_this), "toggleTheme", function () {
+      console.log("toggleTheme");
+
       _this.setState(function (state) {
         return {
-          theme: state.theme === _theme_context__WEBPACK_IMPORTED_MODULE_2__.themes.dark ? _theme_context__WEBPACK_IMPORTED_MODULE_2__.themes.light : _theme_context__WEBPACK_IMPORTED_MODULE_2__.themes.dark
+          theme: _objectSpread(_objectSpread({}, state.theme), {}, {
+            theme: state.theme.theme === _theme_context__WEBPACK_IMPORTED_MODULE_2__.themes.dark ? _theme_context__WEBPACK_IMPORTED_MODULE_2__.themes.light : _theme_context__WEBPACK_IMPORTED_MODULE_2__.themes.dark
+          })
         };
       });
-    };
+    });
 
+    _defineProperty(_assertThisInitialized(_this), "add", function () {
+      _this.setState({
+        parentValua: _this.state.parentValua + 1
+      });
+    });
+
+    console.log("Parent props", props);
+    _this.state = {
+      theme: {
+        theme: _theme_context__WEBPACK_IMPORTED_MODULE_2__.themes.light,
+        toggleTheme: _this.toggleTheme
+      },
+      parentValua: 1
+    };
     return _this;
   }
 
@@ -30056,9 +30089,13 @@ var Parent = /*#__PURE__*/function (_React$Component) {
       console.log("Parent render", this.state);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_theme_context__WEBPACK_IMPORTED_MODULE_2__.ThemeContext.Provider, {
         value: this.state.theme
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(Toolbar, {
-        changeTheme: this.toggleTheme
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, this.props.children));
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_theme_context__WEBPACK_IMPORTED_MODULE_2__.UserContext.Provider, {
+        value: {
+          name: 'Guest'
+        }
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(ToolbarWarp, null))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+        onClick: this.add
+      }, "\u589E\u52A0"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, this.props.children));
     }
   }]);
 
@@ -30083,7 +30120,7 @@ var App = /*#__PURE__*/function (_React$Component2) {
   _createClass(App, [{
     key: "render",
     value: function render() {
-      console.log("App render", this.state);
+      console.log("App render", this.props);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(Parent, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themed_button_js__WEBPACK_IMPORTED_MODULE_3__["default"], null, "no change"));
     }
   }]);

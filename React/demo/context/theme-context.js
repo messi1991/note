@@ -14,6 +14,9 @@ export const user = {
   name: 'Guest'
 }
 
-export const ThemeContext = React.createContext(themes.light);
+export const ThemeContext = React.createContext({
+  theme: themes.light,
+  toggleTheme: () => {}
+});
 
 export const UserContext = React.createContext(user)
