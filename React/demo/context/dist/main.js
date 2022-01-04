@@ -30026,6 +30026,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+console.log('React', /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement('div', {
+  id: 'gao'
+}, 'Hello world'));
 
 function Toolbar(props, a, b, c) {
   console.log("Toolbar props", props, a, b, c);

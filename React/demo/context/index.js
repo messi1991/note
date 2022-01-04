@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import { ThemeContext, themes, user, UserContext } from "./theme-context";
 import ThemedButton from "./themed-button.js";
 
+console.log('React', React.createElement('div', {id: 'gao'}, 'Hello world'))
+
 function Toolbar(props, a ,b ,c) {
   console.log("Toolbar props", props,  a ,b ,c)
     return (
