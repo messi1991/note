@@ -1,4 +1,10 @@
-const a = []
+#!/usr/bin/env node
+
+'use strict';
+console.log('1');
+console.log('windows', globalThis === global)
+
+/* const a = []
 for(let i = 1; i <= 10; i++) {
   a.push(i);
 }
@@ -22,12 +28,11 @@ Promise.any(promises)
   .catch(err => console.error(err.name, err.message, err.errors)) // 全部失败时返回：AggregateError All promises were rejected [ 'a', 'b', 'c' ]
 
 
-
+ */
 
 //  #!/usr/bin/env node
 
-/* #!D:/Program Files/nodejs node
-'use strict';
-console.log('1');
-console.log('windows', globalThis === global)
- */
+// #!D:/Program Files/nodejs node
+
+
+
