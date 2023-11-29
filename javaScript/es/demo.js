@@ -8,12 +8,55 @@ console.log('windows', globalThis === global) */
 for(let i = 1; i <= 10; i++) {
   a.push(i);
 }
-console.log('findLast', a.findLast(el => el < 6));
-console.log('findLastIndex', a.findLastIndex(el => el < 6));
+console.log('findLast', a.findLast());
+console.log('findLastIndex', a.findLastIndex(el => el < 6)); */
 
-console.log('a', a)
-console.log('with', a.with(0, 2))
-console.log('a', a) */
+
+
+
+/* let arr = [1, 2, 3, 4]
+let result = arr.toReversed()
+console.log(result) // [4, 3, 2, 1]
+console.log(arr)  // [1, 2, 3, 4]
+
+let arr = [1, 2, 3, 4]
+let result = arr.toSorted((a, b) => {
+    return b - a
+})
+console.log(result) // [4, 3, 2, 1]
+console.log(arr) // [1, 2, 3, 4]
+
+let arr = [1, 2, 3, 4]
+let result = arr.toSpliced(1, 2, 'a', 'b')
+console.log(result) // [1, 'a', 'b', 4]
+console.log(arr) // [1, 2, 3, 4]
+
+let arr = [1, 2, 3, 4]
+let result = arr.with(1, 'a')
+console.log(result) // [1, 'a', 3, 4]
+console.log(arr) // [1, 2, 3, 4] */
+
+/* const w = new WeakMap()
+const key = Symbol('WeakMapKey')
+
+w.set(key, 'Vue')
+let result = w.get(key)
+console.log(key, result) // Vue */
+
+/* class Foo {
+  #p = 1;
+  #m() {
+    console.log('hello');
+  }
+}
+
+class Bar extends Foo {
+  constructor() {
+    super();
+    console.log(this.#p); // 报错
+    this.#m(); // 报错
+  }
+} */
 
 
 /* const delay = (value, ms, isError) => new Promise((resolve, reject) => {
@@ -81,3 +124,13 @@ for (const [key, value] of objArr) {
 }
  */
 
+
+/* function add(a, b,) {
+  console.log(a, b)
+  return a + b;
+ }
+ add(1, 2,) */
+
+/*  const regexp = /(?<year>\d{4})-(?<month>\d{2})-(?<day>\d{2})/u;
+ const result = regexp.exec('2023-01-01');
+ console.log(result.groups); // { year: '2023', month: '01', day: '01' } */
