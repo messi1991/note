@@ -1,0 +1,95 @@
+<script>
+  /*
+    输入：lists = [[1,4,5],[1,3,4],[2,6]]
+    输出：[1,1,2,3,4,4,5,6]
+    解释：链表数组如下：
+    [
+      1->4->5,
+      1->3->4,
+      2->6
+    ]
+    将它们合并到一个有序链表中得到。
+    1->1->2->3->4->4->5->6
+*/
+</script>
+
+<script>
+  /*
+  * @lc app=leetcode.cn id=23 lang=javascript
+  *
+  * [23] 合并 K 个升序链表
+  */
+
+// @lc code=start
+  /**
+   * Definition for singly-linked list.
+   * function ListNode(val, next) {
+   *     this.val = (val===undefined ? 0 : val)
+   *     this.next = (next===undefined ? null : next)
+   * }
+   */
+  /**
+   * @param {ListNode[]} lists
+   * @return {ListNode}
+   */
+  /* var mergeKLists = function (lists) {
+    if (lists.length === 0) return null;
+  
+    var arr = [], node = new ListNode(), p = node;
+  
+    for (var i = 0; i < lists.length; i++) {
+      var item = lists[i]
+      if (item !== null) {
+        arr.push(item)
+      }
+    }
+    arr.sort((a, b) => a.val - b.val);
+  
+    while (arr.length) {
+      var head = arr.shift();
+  
+      p.next = head
+      if (head.next !== null) {
+        arr.push(head.next);
+        arr.sort((a, b) => a.val - b.val);
+      }
+      p = p.next
+    }
+  
+    return node.next
+  }; */
+</script>
+
+<script>
+  var mergeKLists = (lists) => {
+    var arr = [], dummy = [];
+
+    for (var i = 0; i < lists.length; i++) {
+      arr.push(lists[i]);
+    }
+
+    arr.sort((a, b) => a[0] - b[0])
+
+    while (arr.length) {
+      var item = arr.shift();
+
+      var node = item.shift();
+
+      if (node) {
+        dummy.push(node);
+
+        if (item.length) {
+
+          arr.push(item)
+
+          arr.sort((a, b) => a[0] - b[0])
+        }
+      }
+    }
+
+    return dummy
+  }
+
+  console.log(mergeKLists([[1, 4, 5], [1, 3, 4], [2, 6]]))
+
+</script>
